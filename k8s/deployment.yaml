@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+spec:
+  replicas: 2  # Inicia con 2 pods
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: react-auto-scaling-demo:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "10m"  # 1% de un núcleo
+            memory: "32Mi"  # Muy bajo límite de memoria
+          limits:
+            cpu: "50m"  # 5% de un núcleo
+            memory: "64Mi"
