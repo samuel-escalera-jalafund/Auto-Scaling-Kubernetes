@@ -78,7 +78,7 @@ hey -n 10000 -c 100 http://localhost:8080
 
 - Terminal 1
 ```
-kubectl get pods --w
+kubectl get pods -w
 ```
 
 - Terminal 2
