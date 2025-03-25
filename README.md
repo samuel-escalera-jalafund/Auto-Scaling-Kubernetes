@@ -44,35 +44,41 @@ docker build -t react-auto-scaling-demo:1.0 .
 1. Aplica las configuraciones:
 
 ```
+kubectl delete -f k8s/ --ignore-not-found
 kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
 kubectl apply -f k8s/hpa.yaml
 ```
 
 2. Verifica el estado:
 
-- Terminal 1
 ```
-kubectl get pods --watch
-```
-
-- Terminal 2
-```
-kubectl get hpa --watch
+kubectl get pods -w  # Deberías ver STATUS=Running
+kubectl get svc demo-service  # Verifica el NodePort (30010)
 ```
 
+3. Prueba la conexión:
+
+```
+# Opción 1: Usar el NodePort directamente
+curl http://localhost:30010
+
+# Opción 2: Usar port-forward
+kubectl port-forward svc/demo-service 8080:80
+```
 
 ## Prueba de Auto Scaling
 1. Genera carga con hey:
 
 ```
-hey -n 10000 -c 100 http://localhost 
+hey -n 10000 -c 100 http://localhost:8080
 ```
 
 2. Monitorea el escalado (en otra terminal):
 
 - Terminal 1
 ```
-kubectl get pods --watch
+kubectl get pods --w
 ```
 
 - Terminal 2
