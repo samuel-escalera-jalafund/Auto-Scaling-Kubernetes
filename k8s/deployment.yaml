@@ -1,9 +1,10 @@
+# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo
 spec:
-  replicas: 2  # Inicia con 2 pods
+  replicas: 2
   selector:
     matchLabels:
       app: demo
@@ -15,13 +16,13 @@ spec:
       containers:
       - name: demo
         image: react-auto-scaling-demo:1.0
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent  # Cambiado de Never a IfNotPresent
         ports:
         - containerPort: 80
         resources:
           requests:
-            cpu: "10m"  # 1% de un núcleo
-            memory: "32Mi"  # Muy bajo límite de memoria
+            cpu: "1m"  # Más bajo para forzar escalado rápido
+            memory: "16Mi"
           limits:
-            cpu: "50m"  # 5% de un núcleo
-            memory: "64Mi"
+            cpu: "10m"
+            memory: "32Mi"

@@ -36,7 +36,8 @@ git clone https://github.com/samuel-escalera-jalafund/Auto-Scaling-Kubernetes.gi
 1. Construye la imagen Docker:
 
 ```
-docker build -t react-auto-scaling-demo:1.0 ./app
+cd demo/
+docker build -t react-auto-scaling-demo:1.0 .
 ```
 
 ## Despliegue en Kubernetes
