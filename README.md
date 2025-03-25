@@ -1,5 +1,47 @@
+#  ¿Qué es Auto Scaling?
+
+Definición:
+Capacidad de ajustar automáticamente recursos computacionales según demanda.
+
+**Tipos en Kubernetes:**
+
+- Horizontal: Añade/elimina pods (nuestro enfoque)
+- Vertical: Aumenta/reduce recursos de un pod
+
+Beneficios:
+- Optimización de costos
+- Alta disponibilidad
+- Manejo de carga variable
+
+![alt text](image.png)
+
+# ¿Qué es Kubernetes?
+
+Definición:
+Sistema de orquestación de contenedores open-source para automatizar despliegues, escalado y gestión de aplicaciones.
+
+**Conceptos clave para el demo:**
+
+- Pods: Unidad mínima de ejecución (1+ contenedores)
+- Deployments: Gestionan el ciclo de vida de los pods
+- Services: Exponen aplicaciones internamente/externamente
+- HPA: Horizontal Pod Autoscaler (autoescalado basado en métricas)
+
+![alt text](image-1.png)
+
+# Flujo del Demo
+
+1. Despliegue inicial: 2 pods con recursos mínimos
+2. Prueba de carga: hey genera tráfico HTTP
+3. Escalado automático:
+    -  HPA detecta >10% uso CPU
+    - Crea nuevos pods (hasta 10)
+4. Reducción: Al terminar la carga, elimina pods extras
+
 # Demo de Auto Scaling con Kubernetes
 Esta demostración muestra cómo configurar Auto Scaling horizontal en Kubernetes usando una aplicación React básica con métricas de CPU y memoria.
+
+"Kubernetes automatiza el despliegue y escalado de aplicaciones. En este demo, configuramos un HPA que monitorea el uso de CPU y automáticamente añade pods cuando la carga supera el 10%, demostrando cómo aplicaciones reactivas pueden manejar tráfico variable sin intervención manual."
 
 ## Prerrequisitos
 - Docker Desktop con Kubernetes habilitado

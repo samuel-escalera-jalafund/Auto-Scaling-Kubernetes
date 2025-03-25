@@ -15,7 +15,7 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 10 
+        averageUtilization: 10  # Escala al 10% de uso
   - type: Resource
     resource:
       name: memory

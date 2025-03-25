@@ -16,13 +16,13 @@ spec:
       containers:
       - name: demo
         image: react-auto-scaling-demo:1.0
-        imagePullPolicy: IfNotPresent  # Cambiado de Never a IfNotPresent
+        imagePullPolicy: IfNotPresent 
         ports:
         - containerPort: 80
         resources:
-          requests:
-            cpu: "1m"  # Más bajo para forzar escalado rápido
+          requests:  # Límites mínimos
+            cpu: "1m"  #  0.1% de CPU - Más bajo para forzar escalado rápido
             memory: "16Mi"
-          limits:
-            cpu: "10m"
+          limits:    # Límites máximos
+            cpu: "10m"    # 1% de CPU
             memory: "32Mi"
